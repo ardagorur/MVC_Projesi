@@ -1,10 +1,32 @@
-﻿@{
+﻿@model List<Urun>
+
+@{
     ViewData["Title"] = "Home Page";
     string mesaj = "Merhaba MVC";
     //Razor engine
+    Random rnd = new Random();
+    int counter = rnd.Next(10, 20);
+
+
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+    <h2>@mesaj @rnd.Next(0,100)</h2>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <ul>
+        @*@for(int i =1; i < counter; i++)
+        {
+            <li>@i</li>
+        }*@
+        @*@foreach (var item in Model)
+        {
+            <li>@item.Ad - @item.Fiyat</li>
+        }*@
+
+        @foreach (var item in Model)
+        {
+            <li>@item.Ad - @item.Fiyat</li>
+        }
+    </ul>
 </div>

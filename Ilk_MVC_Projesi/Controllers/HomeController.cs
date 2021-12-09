@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using static Ilk_MVC_Projesi.Models.Urun;
 
 namespace Ilk_MVC_Projesi.Controllers
 {
@@ -20,7 +21,8 @@ namespace Ilk_MVC_Projesi.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var data = UrunManager.GetUrunler();
+            return View(data);
         }
 
         public IActionResult Privacy()
