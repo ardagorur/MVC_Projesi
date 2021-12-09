@@ -1,0 +1,22 @@
+﻿@model List<Category>
+    <div class="row">
+        <div class="col-6">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori Adı</th>
+                        <th>Açıklama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                       {
+                        <tr>
+                            <td>@item.CategoryName</td>
+                            <td>@item.Description</td>
+                        </tr>
+                       }
+                </tbody>
+            </table>
+        </div>
+    </div>
