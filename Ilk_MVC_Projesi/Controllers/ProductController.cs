@@ -16,13 +16,13 @@ namespace Ilk_MVC_Projesi.Controllers
 
         public IActionResult Index()
         {
-            var model = _context.Products.Include(x => x.OrderDetails).OrderBy(x => x.ProductId).ToList();
+            var model = _context.Products.Include(x => x.Category).OrderBy(x => x.ProductId).ToList();
             return View(model);
         }
 
         public IActionResult Detail(int? ID)
         {
-            var Product = _context.OrderDetails.FirstOrDefault(x => x.ProductId == ID);
+            var Product = _context.Products.FirstOrDefault(x => x.ProductId == ID);
             if (Product == null)
                 return RedirectToAction(nameof(Index));
             return View(Product);
