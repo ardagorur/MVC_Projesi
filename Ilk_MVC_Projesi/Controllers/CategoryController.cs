@@ -1,4 +1,5 @@
 ﻿using Ilk_MVC_Projesi.Models;
+using Ilk_MVC_Projesi.VewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -54,25 +55,32 @@ namespace Ilk_MVC_Projesi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Category model)
+        public IActionResult Create(CategoryViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             var category = new Category()
             {
+                CategoryId = 1,//Hata versin diye eklendi.
                 CategoryName = model.CategoryName,
                 Description = model.Description
             };
             _context.Categories.Add(category);
             try
             {
+
                 _context.SaveChanges();
                 return RedirectToAction("Detail", new { id = category.CategoryId });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ModelState.AddModelError(string.Empty, $"{model.CategoryName} eklenirken bir hata oluştu. Tekrar deneyiniz");
+                return View(model);
             }
             return View();
         }
+
     }
 }
