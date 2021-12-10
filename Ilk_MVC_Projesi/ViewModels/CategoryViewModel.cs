@@ -14,5 +14,6 @@ namespace Ilk_MVC_Projesi.VewModels
         public string CategoryName { get; set; }
         [Display(Name ="Açıklama")]
         public string Description { get; set; }
+        public int CategoryId { get; internal set; }
     }
 }

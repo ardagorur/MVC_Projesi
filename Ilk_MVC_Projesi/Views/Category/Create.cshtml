@@ -3,6 +3,7 @@
         <div asp-validation-summary="All"></div>
     </div>
     <form method="post" asp-action="Create" asp-controller="Category">
+        <input asp-for-categoryId="" type="hidden"/>
         <label asp-for="CategoryName"></label>
         <input asp-for="CategoryName" /><br />
         <span class="text-danger" asp-validation-for="CategoryName"></span> <br />
