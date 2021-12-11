@@ -97,11 +97,15 @@ namespace Ilk_MVC_Projesi.Controllers
             var shipper = _context.Shippers.FirstOrDefault(s => s.ShipperId == model.ShipperId);
             try
             {
-                shipper.CompanyName = model.CompanyName;
-                shipper.Phone = model.Phone;
-                _context.Shippers.Update(shipper);
+                Shipper shipper1 = new Shipper()
+                {
+                    ShipperId = model.ShipperId,
+                    CompanyName = model.CompanyName,
+                    Phone = model.Phone
+                };
+                _context.Shippers.Update(shipper1);
                 _context.SaveChanges();
-                return RedirectToAction("Detail", new { id = shipper.ShipperId });
+                return RedirectToAction("Detail", new { id = shipper1.ShipperId });
             }
             catch (Exception ex)
             {

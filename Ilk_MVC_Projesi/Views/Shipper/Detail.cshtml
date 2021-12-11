@@ -4,8 +4,8 @@
 <h3>@Model.Phone</h3>
 <p>@Model.Orders.Count adet nakliyede kullanıldı.</p>
 
-<a asp-action="Delete" asp-controller="Shipper" asp-route-categoryId=@Model.CompanyName class="btn btn-info">Firmayı Sil</a>
-<a asp-action="Update" asp-controller="Shipper" asp-route-categoryId=@Model.CompanyName class="btn btn-info">Firmayı Güncelle</a>
+<a asp-action="Delete" asp-controller="Shipper" asp-route-ShipperId=@Model.ShipperId class="btn btn-info">Firmayı Sil</a>
+<a asp-action="Update" asp-controller="Shipper" asp-route-ShipperId=@Model.ShipperId class="btn btn-info">Firmayı Güncelle</a>
 
 <div class="row">
     <div class="col-10">
@@ -16,7 +16,6 @@
                     <th>Çalışan</th>
                     <th>Nakliye</th>
                     <th>Sipariş Tarihi</th>
-                    <th>Sipariş Detayı</th>
                     <th>İstenen Tarih</th>
                     <th>Kargo Adresi</th>
                     <th>Kargo Şehri</th>
@@ -36,7 +35,6 @@
                     <td>@item.Employee</td>
                     <td>@item.Freight</td>
                     <td>@item.OrderDate</td>
-                    <td>@item.OrderDetails</td>
                     <td>@item.RequiredDate</td>
                     <td>@item.ShipAddress</td>
                     <td>@item.ShipCity</td>

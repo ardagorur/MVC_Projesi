@@ -95,7 +95,7 @@ namespace Ilk_MVC_Projesi.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-        public IActionResult Update(int Id)
+        public IActionResult Update(int? Id)
         {
             var category = _context.Categories.FirstOrDefault(x => x.CategoryId == Id);
             if (category == null) return RedirectToAction(nameof(Index));
@@ -117,14 +117,14 @@ namespace Ilk_MVC_Projesi.Controllers
             }
 
             var category = _context.Categories.FirstOrDefault(x => x.CategoryId == model.CategoryId);
-
             try
             {
-                category.CategoryName = model.CategoryName;
-                category.Description = model.Description;
 
+                category.CategoryId = (int)model.CategoryId;
+                    category.CategoryName = model.CategoryName.ToString();
+                    category.Description = model.Description.ToString();
+                
                 _context.Categories.Update(category);
-
                 _context.SaveChanges();
                 return RedirectToAction("Detail", new { id = category.CategoryId });
             }
