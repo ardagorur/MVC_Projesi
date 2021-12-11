@@ -53,7 +53,6 @@ namespace Ilk_MVC_Projesi.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(CategoryViewModel model)
         {
@@ -63,25 +62,23 @@ namespace Ilk_MVC_Projesi.Controllers
             }
             var category = new Category()
             {
-                //CategoryId = 1,//Hata versin diye eklendi.
+                //CategoryId = 1;//Hata versin diye eklendi.
                 CategoryName = model.CategoryName,
                 Description = model.Description
             };
             _context.Categories.Add(category);
+
             try
             {
-
                 _context.SaveChanges();
                 return RedirectToAction("Detail", new { id = category.CategoryId });
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, $"{model.CategoryName} eklenirken bir hata oluştu. Tekrar deneyiniz");
+                ModelState.AddModelError(string.Empty, $"{model.CategoryName} eklenirken bir hata oluştu. Tekrar deneyiniz.");
                 return View(model);
             }
-            return View();
         }
-
         public IActionResult Delete(int? categoryId)
         {
             var silinecek = _context.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
@@ -90,7 +87,7 @@ namespace Ilk_MVC_Projesi.Controllers
                 _context.Categories.Remove(silinecek);
                 _context.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return RedirectToAction(nameof(Delete), new { id = categoryId });
             }

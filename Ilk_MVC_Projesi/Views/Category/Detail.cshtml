@@ -4,10 +4,11 @@
 <h3>@Model.Description</h3>
 <a asp-action="Create" asp-controller="Category" class="btn btn-info">Yeni Kategori</a>
 <a asp-action="Delete" asp-controller="Category" asp-route-categoryId=@Model.CategoryId class="btn btn-info">Kategoriyi Sil</a>
+<a asp-action="Update" asp-controller="Category" asp-route-categoryId=@Model.CategoryId class="btn btn-info">Kategoriyi Güncelle</a>
 
 <div class="row">
     <div class="col-6">
-        <table>
+        <table class="table-bordered">
             <thead>
                 <tr>
                     <th>Ürün</th>

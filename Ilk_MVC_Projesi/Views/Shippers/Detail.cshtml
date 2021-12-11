@@ -1,0 +1,54 @@
+﻿@model Shipper
+
+<h1>@Model.CompanyName</h1>
+<h3>@Model.Phone</h3>
+<p>@Model.Orders.Count adet nakliyede kullanıldı.</p>
+
+<a asp-action="Delete" asp-controller="Shipper" asp-route-categoryId=@Model.CompanyName class="btn btn-info">Firmayı Sil</a>
+<a asp-action="Update" asp-controller="Shipper" asp-route-categoryId=@Model.CompanyName class="btn btn-info">Firmayı Güncelle</a>
+
+<div class="row">
+    <div class="col-10">
+        <table class="table-bordered">
+            <thead>
+                <tr>
+                    <th>Müşteri</th>
+                    <th>Çalışan</th>
+                    <th>Nakliye</th>
+                    <th>Sipariş Tarihi</th>
+                    <th>Sipariş Detayı</th>
+                    <th>İstenen Tarih</th>
+                    <th>Kargo Adresi</th>
+                    <th>Kargo Şehri</th>
+                    <th>Kargo Ülkesi</th>
+                    <th>Gemi Adı</th>
+                    <th>Kargo Tarihi</th>
+                    <th>Posta Kodu</th>
+                    <th>Kargo Bölgesi</th>
+                    <th>Kargo Aracı</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Orders)
+                {
+                <tr>
+                    <td>@item.Customer</td>
+                    <td>@item.Employee</td>
+                    <td>@item.Freight</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.OrderDetails</td>
+                    <td>@item.RequiredDate</td>
+                    <td>@item.ShipAddress</td>
+                    <td>@item.ShipCity</td>
+                    <td>@item.ShipCountry</td>
+                    <td>@item.ShipName</td>
+                    <td>@item.ShippedDate</td>
+                    <td>@item.ShipPostalCode</td>
+                    <td>@item.ShipRegion</td>
+                    <td>@item.ShipVia</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

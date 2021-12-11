@@ -1,0 +1,14 @@
+﻿@model ShipperViewModel
+<div class="text-danger">
+    <div asp-validation-summary="All"></div>
+</div>
+<form method="post" asp-action="Create" asp-controller="Shipper">
+    <input asp-for-categoryId="" type="hidden" />
+    <label asp-for="CompanyName"></label>
+    <input asp-for="CompanyName" /> <br />
+    <span class="text-danger" asp-validation-for="CompanyName"></span> <br />
+    <label asp-for="Phone"></label>
+    <input asp-for="Phone" /> <br />
+
+    <input type="submit" value="Ekle" class="btn btn-warning" />
+</form>
