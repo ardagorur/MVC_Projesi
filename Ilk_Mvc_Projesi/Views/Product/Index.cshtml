@@ -1,0 +1,48 @@
+﻿@model List<Product>
+@{ var silinenMesaj = @TempData["silinen_ürün"]?.ToString(); }
+@if (!string.IsNullOrEmpty(silinenMesaj))
+{
+<h3 class="text-danger">@silinenMesaj isimli ürün silinmiştir</h3>}
+<a asp-action="Create" asp-controller="Product" class="btn btn-info">Yeni Ürün</a>
+
+<div class="row">
+    <div class="col-9">
+        <table class="table-bordered">
+            <thead>
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Kategori</th>
+                    <th>Discontinued</th>
+                    <th>Birim Adeti</th>
+                    <th>ReorderLevel</th>
+                    <th>Tedarikçi</th>
+                    <th>Birim Fiyat</th>
+                    <th>Stok Adeti</th>
+                    <th>Sipariş Adeti</th>
+                    <th>Detay</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+    <tr>
+        <td>@item.ProductName</td>
+        <td>@item.Category.CategoryName</td>
+        <td>@item.Discontinued</td>
+        <td>@item.QuantityPerUnit</td>
+        <td>@item.ReorderLevel</td>
+        <td>@item.Supplier.CompanyName</td>
+        <td>@item.UnitPrice</td>
+        <td>@item.UnitsInStock</td>
+        <td>@item.UnitsOnOrder</td>
+        <td>
+            <a class="btn btn-block btn-info"
+               asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId">
+                Detay
+            </a>
+        </td>
+    </tr>}
+            </tbody>
+        </table>
+    </div>
+</div>

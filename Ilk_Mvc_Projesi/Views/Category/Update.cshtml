@@ -1,0 +1,16 @@
+﻿@model CategoryViewModel
+    <p>@Model.CategoryId</p>
+<div class="text-danger">
+    <div asp-validation-summary="All"></div>
+</div>
+<form method="post" asp-action="Update" asp-controller="Category">
+    <input asp-for="CategoryId" type="hidden" />
+    <label asp-for="CategoryName"></label>
+    <input asp-for="CategoryName" />
+    <span class="text-danger" asp-validation-for="CategoryName"></span>
+    <br />
+    <label asp-for="Description"></label>
+    <input asp-for="Description" />
+    <span class="text-danger" asp-validation-for="Description"></span><br />
+    <input type="submit" value="Güncelle" class="btn btn-success" />
+</form>
