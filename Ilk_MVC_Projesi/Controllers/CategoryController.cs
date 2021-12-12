@@ -1,58 +1,59 @@
-﻿using Ilk_MVC_Projesi.Models;
-using Ilk_MVC_Projesi.VewModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
+using Ilk_Mvc_Projesi.Models;
+using Ilk_Mvc_Projesi.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Microsoft.EntityFrameworkCore;
 
-namespace Ilk_MVC_Projesi.Controllers
+namespace Ilk_Mvc_Projesi.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly NorthwindContext _context;
+
         public CategoryController(NorthwindContext context)
         {
             _context = context;
         }
 
-        [HttpGet]
+        //[HttpGet]
         public IActionResult Index()
         {
-            var data = _context.Categories.Include(x => x.Products).OrderBy(x => x.CategoryName).ToList();
+            var data = _context.Categories
+                .Include(x => x.Products)
+                .OrderBy(x => x.CategoryName)
+                .ToList();
 
             return View(data);
         }
-        public IActionResult Detail(int? ID)
-        {
-            //Linq sorgusu 
 
-            var Category = _context.Categories
+        public IActionResult Detail(int? id)
+        {
+            var category = _context.Categories
                 .Include(x => x.Products)
                 .ThenInclude(x => x.OrderDetails)
                 .ThenInclude(x => x.Order)
-                .FirstOrDefault(x => x.CategoryId == ID);
+                .FirstOrDefault(x => x.CategoryId == id);
 
-            //Sql sorgusu biçimi ikiside aynı soruguyu yapar
-
-            var Category2 = from cat in _context.Categories
+            var category2 = from cat in _context.Categories
                             join prod in _context.Products on cat.CategoryId equals prod.CategoryId
                             join odetail in _context.OrderDetails on prod.ProductId equals odetail.ProductId
-                            where cat.CategoryId == ID
+                            where cat.CategoryId == id
                             select cat;
 
-            var model = Category2.FirstOrDefault();
+            var model = category2.FirstOrDefault();
 
-            if (Category == null)
+            if (category == null)
                 return RedirectToAction(nameof(Index));
-            return View(Category);
-
+            return View(category);
         }
+
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Create(CategoryViewModel model)
         {
@@ -60,14 +61,14 @@ namespace Ilk_MVC_Projesi.Controllers
             {
                 return View(model);
             }
+
             var category = new Category()
             {
-                //CategoryId = 1;//Hata versin diye eklendi.
+                //CategoryId = 1,//hata versin diye yazdık
                 CategoryName = model.CategoryName,
                 Description = model.Description
             };
             _context.Categories.Add(category);
-
             try
             {
                 _context.SaveChanges();
@@ -75,10 +76,11 @@ namespace Ilk_MVC_Projesi.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, $"{model.CategoryName} eklenirken bir hata oluştu. Tekrar deneyiniz.");
+                ModelState.AddModelError(string.Empty, $"{model.CategoryName} eklenirken bir hata oluştu. Tekrar deneyiniz");
                 return View(model);
             }
         }
+
         public IActionResult Delete(int? categoryId)
         {
             var silinecek = _context.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
@@ -89,15 +91,16 @@ namespace Ilk_MVC_Projesi.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction(nameof(Delete), new { id = categoryId });
+                return RedirectToAction(nameof(Detail), new { id = categoryId });
             }
-            TempData["silinen kategori"] = silinecek.CategoryName;
-            return RedirectToAction(nameof(Index));
 
+            TempData["silinen_kategori"] = silinecek.CategoryName;
+            return RedirectToAction(nameof(Index));
         }
-        public IActionResult Update(int? Id)
+
+        public IActionResult Update(int? id)
         {
-            var category = _context.Categories.FirstOrDefault(x => x.CategoryId == Id);
+            var category = _context.Categories.FirstOrDefault(x => x.CategoryId == id);
             if (category == null) return RedirectToAction(nameof(Index));
 
             var model = new CategoryViewModel()
@@ -106,8 +109,10 @@ namespace Ilk_MVC_Projesi.Controllers
                 CategoryName = category.CategoryName,
                 Description = category.Description
             };
+
             return View(model);
         }
+
         [HttpPost]
         public IActionResult Update(CategoryViewModel model)
         {
@@ -117,14 +122,14 @@ namespace Ilk_MVC_Projesi.Controllers
             }
 
             var category = _context.Categories.FirstOrDefault(x => x.CategoryId == model.CategoryId);
+
             try
             {
+                category.CategoryName = model.CategoryName;
+                category.Description = model.Description;
 
-                category.CategoryId = (int)model.CategoryId;
-                    category.CategoryName = model.CategoryName.ToString();
-                    category.Description = model.Description.ToString();
-                
                 _context.Categories.Update(category);
+
                 _context.SaveChanges();
                 return RedirectToAction("Detail", new { id = category.CategoryId });
             }

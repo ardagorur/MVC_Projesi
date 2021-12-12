@@ -2,17 +2,17 @@
 
 <h1>@Model.CategoryName</h1>
 <h3>@Model.Description</h3>
-<a asp-action="Create" asp-controller="Category" class="btn btn-info">Yeni Kategori</a>
-<a asp-action="Delete" asp-controller="Category" asp-route-categoryId=@Model.CategoryId class="btn btn-info">Kategoriyi Sil</a>
-<a asp-action="Update" asp-controller="Category" asp-route-categoryId=@Model.CategoryId class="btn btn-info">Kategoriyi Güncelle</a>
+<a asp-action="Delete" asp-controller="Category" asp-route-categoryId=@Model.CategoryId class="btn btn-danger">Kategoriyi Sil</a>
+<a asp-action="Update" asp-controller="Category" asp-route-Id=@Model.CategoryId class="btn btn-dark">Kategoriyi Güncelle</a>
+
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-9">
         <table class="table-bordered">
             <thead>
                 <tr>
-                    <th>Ürün</th>
-                    <th>Fiyatı</th>
+                    <th>Ürün Adı</th>
+                    <th>Fiyat</th>
                     <th>Kategori Adı</th>
                     <th>Siparişleri</th>
                     @*<th>Hacim</th>*@
@@ -22,20 +22,19 @@
             <tbody>
                 @foreach (var item in Model.Products)
                 {
-                    <tr>
-                        <td>@item.ProductName</td>
-                        <td>@item.UnitPrice</td>
-                        <td>@item.Category.CategoryName</td>
-                        <td>@item.OrderDetails.Count</td>
-                        @*<td>@item.OrderDetails.Sum(x=> x.UnitPrice*x.Quantity*(1-(decimal)x.Discount))</td>*@
-                        <td>
-                            <a class="btn btn-block btn-info"
-                               asp-controller="Category" asp-action="Detail" asp-route-id="@item.CategoryId">
-                                Detay
-                            </a>
-                        </td>
-                    </tr>
-                }
+    <tr>
+        <td>@item.ProductName</td>
+        <td>@item.UnitPrice</td>
+        <td>@item.Category.CategoryName</td>
+        <td>@item.OrderDetails.Count</td>
+        @*<td>@item.OrderDetails.Sum(x=>x.UnitPrice*x.Quantity*(decimal)(1-x.Discount))</td>*@
+        <td>
+            <a class="btn btn-block btn-info"
+               asp-controller="Category" asp-action="Detail" asp-route-id="@item.CategoryId">
+                Detay
+            </a>
+        </td>
+    </tr>}
             </tbody>
         </table>
     </div>

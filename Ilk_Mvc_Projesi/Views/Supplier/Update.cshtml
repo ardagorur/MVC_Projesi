@@ -1,0 +1,42 @@
+﻿@model SupplierViewModel
+    <p>@Model.SupplierId</p>
+<div class="text-danger">
+    <div asp-validation-summary="All"></div>
+</div>
+<form method="post" asp-action="Update" asp-controller="Supplier">
+    <input asp-for="SupplierId" type="hidden" />
+    <label asp-for="CompanyName"></label>
+    <input asp-for="CompanyName" />
+    <span class="text-danger" asp-validation-for="CompanyName"></span><br />
+    <label asp-for="ContactName"></label>
+    <input asp-for="ContactName" />
+    <span class="text-danger" asp-validation-for="ContactName"></span><br />
+    <label asp-for="ContactTitle"></label>
+    <input asp-for="ContactTitle" />
+    <span class="text-danger" asp-validation-for="ContactTitle"></span><br />
+    <label asp-for="Address"></label>
+    <input asp-for="Address" />
+    <span class="text-danger" asp-validation-for="Address"></span><br />
+    <label asp-for="City"></label>
+    <input asp-for="City" />
+    <span class="text-danger" asp-validation-for="City"></span><br />
+    <label asp-for="Region"></label>
+    <input asp-for="Region" />
+    <span class="text-danger" asp-validation-for="Region"></span><br />
+    <label asp-for="PostalCode"></label>
+    <input asp-for="PostalCode" />
+    <span class="text-danger" asp-validation-for="PostalCode"></span><br />
+    <label asp-for="Country"></label>
+    <input asp-for="Country" />
+    <span class="text-danger" asp-validation-for="Country"></span><br />
+    <label asp-for="Phone"></label>
+    <input asp-for="Phone" />
+    <span class="text-danger" asp-validation-for="Phone"></span><br />
+    <label asp-for="Fax"></label>
+    <input asp-for="Fax" />
+    <span class="text-danger" asp-validation-for="Fax"></span><br />
+    <label asp-for="HomePage"></label>
+    <input asp-for="HomePage" />
+    <span class="text-danger" asp-validation-for="HomePage"></span><br />
+    <input type="submit" value="Ekle" class="btn btn-warning" />
+</form>

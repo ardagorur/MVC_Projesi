@@ -1,5 +1,32 @@
 ﻿@model Product
 
 <h1>@Model.ProductName</h1>
-<h3>@Model.UnitPrice</h3>
-<h3>@Model.OrderDetails</h3>
+<a asp-action="Delete" asp-controller="Product" asp-route-categoryId=@Model.ProductId class="btn btn-danger">Ürünü Sil</a>
+<a asp-action="Update" asp-controller="Product" asp-route-Id=@Model.ProductId class="btn btn-dark">Ürünü Güncelle</a>
+
+<div class="row">
+    <div class="col-9">
+        <table class="table-bordered">
+            <thead>
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Adet</th>
+                    <th>Birim Fiyat</th>
+                    <th>İskonto</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderDetails)
+                {
+                <tr>
+                    <td>@item.Product.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.Discount</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

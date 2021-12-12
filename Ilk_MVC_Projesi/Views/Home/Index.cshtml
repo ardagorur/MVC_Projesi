@@ -3,30 +3,35 @@
 @{
     ViewData["Title"] = "Home Page";
     string mesaj = "Merhaba MVC";
-    //Razor engine
+    //Razor Engine
     Random rnd = new Random();
     int counter = rnd.Next(10, 20);
-
-
+    int toplam = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        toplam += i;
+    }
+    //var model = UrunManager.GetUrunler();
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome</h1> <br />
     <h2>@mesaj @rnd.Next(0,100)</h2>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <ul>
-        @*@for(int i =1; i < counter; i++)
+        @*@for (int i = 0; i < counter; i++)
         {
             <li>@i</li>
         }*@
-        @*@foreach (var item in Model)
+        @*@foreach (var item in model)
         {
             <li>@item.Ad - @item.Fiyat</li>
         }*@
-
+        
         @foreach (var item in Model)
         {
             <li>@item.Ad - @item.Fiyat</li>
         }
+
     </ul>
 </div>

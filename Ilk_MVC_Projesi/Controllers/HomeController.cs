@@ -1,4 +1,4 @@
-﻿using Ilk_MVC_Projesi.Models;
+﻿using Ilk_Mvc_Projesi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using static Ilk_MVC_Projesi.Models.Urun;
 
-namespace Ilk_MVC_Projesi.Controllers
+namespace Ilk_Mvc_Projesi.Controllers
 {
     public class HomeController : Controller
     {
@@ -21,7 +20,10 @@ namespace Ilk_MVC_Projesi.Controllers
 
         public IActionResult Index()
         {
+            //asşdalskdlsa
             var data = UrunManager.GetUrunler();
+
+            _logger.LogInformation("falan filan");
             return View(data);
         }
 

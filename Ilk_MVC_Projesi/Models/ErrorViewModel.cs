@@ -1,6 +1,6 @@
 using System;
 
-namespace Ilk_MVC_Projesi.Models
+namespace Ilk_Mvc_Projesi.Models
 {
     public class ErrorViewModel
     {

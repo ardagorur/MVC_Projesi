@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace Ilk_MVC_Projesi.Models
+namespace Ilk_Mvc_Projesi.Models
 {
     public partial class Product
     {

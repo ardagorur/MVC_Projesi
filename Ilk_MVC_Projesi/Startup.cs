@@ -1,17 +1,12 @@
-using Ilk_MVC_Projesi.Models;
+using Ilk_Mvc_Projesi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Ilk_MVC_Projesi
+namespace Ilk_Mvc_Projesi
 {
     public class Startup
     {
@@ -26,6 +21,7 @@ namespace Ilk_MVC_Projesi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Northwind")));
+
             services.AddControllersWithViews();
         }
 

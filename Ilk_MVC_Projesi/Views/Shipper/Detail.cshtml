@@ -2,18 +2,16 @@
 
 <h1>@Model.CompanyName</h1>
 <h3>@Model.Phone</h3>
-<p>@Model.Orders.Count adet nakliyede kullanıldı.</p>
-
-<a asp-action="Delete" asp-controller="Shipper" asp-route-ShipperId=@Model.ShipperId class="btn btn-info">Firmayı Sil</a>
-<a asp-action="Update" asp-controller="Shipper" asp-route-ShipperId=@Model.ShipperId class="btn btn-info">Firmayı Güncelle</a>
+<a asp-action="Delete" asp-controller="Shipper" asp-route-shipperId=@Model.ShipperId class="btn btn-danger">Firmayı Sil</a>
+<a asp-action="Update" asp-controller="Shipper" asp-route-Id=@Model.ShipperId class="btn btn-dark">Firmayı Güncelle</a>
 
 <div class="row">
-    <div class="col-10">
+    <div class="col-9">
         <table class="table-bordered">
             <thead>
                 <tr>
-                    <th>Müşteri</th>
-                    <th>Çalışan</th>
+                    @*<th>Müşteri</th>
+                    <th>Çalışan</th>*@
                     <th>Nakliye</th>
                     <th>Sipariş Tarihi</th>
                     <th>İstenen Tarih</th>
@@ -30,22 +28,23 @@
             <tbody>
                 @foreach (var item in Model.Orders)
                 {
-                <tr>
-                    <td>@item.Customer</td>
-                    <td>@item.Employee</td>
-                    <td>@item.Freight</td>
-                    <td>@item.OrderDate</td>
-                    <td>@item.RequiredDate</td>
-                    <td>@item.ShipAddress</td>
-                    <td>@item.ShipCity</td>
-                    <td>@item.ShipCountry</td>
-                    <td>@item.ShipName</td>
-                    <td>@item.ShippedDate</td>
-                    <td>@item.ShipPostalCode</td>
-                    <td>@item.ShipRegion</td>
-                    <td>@item.ShipVia</td>
-                </tr>
-                }
+    <tr>
+        @*<td>@item.Customer</td>
+        <td>@item.Employee</td>*@
+        <td>@item.Freight</td>
+        <td>@item.OrderDate</td>
+        <td>@item.RequiredDate</td>
+        <td>@item.ShipAddress</td>
+        <td>@item.ShipCity</td>
+        <td>@item.ShipCountry</td>
+        <td>@item.ShipName</td>
+        <td>@item.ShippedDate</td>
+        <td>@item.ShipPostalCode</td>
+        <td>@item.ShipRegion</td>
+        <td>@item.ShipVia</td>
+
+    </tr>
+}
             </tbody>
         </table>
     </div>
