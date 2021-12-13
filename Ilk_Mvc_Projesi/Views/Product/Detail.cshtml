@@ -1,8 +1,8 @@
 ﻿@model ProductViewModel
-
+    <div class="bg-info">@TempData["Mesaj"]</div>
 <h1>@Model.ProductName</h1>
 <h3>@($"{Model.UnitPrice:c2}")</h3>
-<a asp-action="Delete" asp-controller="Product" asp-route-categoryId=@Model.ProductId class="btn btn-danger">Ürünü Sil</a>
+
 
 <div class="row">
     <div class="col-3 text-black-50">Kategori Adı</div>
@@ -16,5 +16,27 @@
     <div class="col-3 text-black-50"></div>
     <div class="col-3">
     <a asp-action="Update" asp-controller="Product" asp-route-id="@Model.ProductId" class="btn btn-warning">Düzenle</a>
+    </div>
+    <div class="row">
+        <input type="button" class="btn btn-danger" value="Sil" data-toggle="modal" data-target="#confirm-delete"/>
+    </div>
+</div>
+
+<di class="modal-fade" Id="confirm-dalete" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <hd class="modal-title" in="myModalLabel">Silme Onayı</hd>
+            </div>
+            <div class="modal-footer">
+                <p>Ürün Silinmiştir.Bu işlemin geri dönüşü yoktur.</p>
+                <p>Ürün eklediniz.</p>
+                <p class=""></p>
+            </div>
+            <div class="modal-footer"></div>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+            <a class="btn btn-danger btn-ok"</a>
+        </div>
     </div>
 </div>

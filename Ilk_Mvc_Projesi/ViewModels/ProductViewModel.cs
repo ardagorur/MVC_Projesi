@@ -18,6 +18,7 @@ namespace Ilk_Mvc_Projesi.ViewModels
         public int? CategoryId { get; set; }
         [Display(Name = "Kategori Adı")]
         public string CategoryName { get; set; }
+        [Range(0, 999999999, ErrorMessage = "Ürün fiyatı 0-999999999 arasında olmalıdır")]
         public decimal? UnitPrice { get; set; }
 
     }

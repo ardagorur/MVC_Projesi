@@ -1,5 +1,6 @@
 ﻿
 @model ProductViewModel
+    <div class="bg-danger" asp-validation-summary="All"></div>
 
 <h2>@Model.ProductName</h2>
 <h3>@($"{Model.UnitPrice:c2}")</h3>

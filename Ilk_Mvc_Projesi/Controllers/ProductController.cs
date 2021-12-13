@@ -100,29 +100,9 @@ namespace Ilk_Mvc_Projesi.Controllers
                 SupplierId = data.SupplierId
             };
 
-            var categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
-            var suppliers = _context.Suppliers.OrderBy(x => x.CompanyName).ToList();
 
-            var categoryList = new List<SelectListItem>
-            {
-                new SelectListItem("Kategori Yok", null)
-            };
-            foreach (var category in categories)
-            {
-                categoryList.Add(new SelectListItem(category.CategoryName, category.CategoryId.ToString()));
-            }
-
-            var supplierList = new List<SelectListItem>()
-            {
-                new SelectListItem("Tedarikci Yok", null)
-            };
-            foreach (var supplier in suppliers)
-            {
-                supplierList.Add(new SelectListItem(supplier.CompanyName, supplier.SupplierId.ToString()));
-            }
-
-            ViewBag.CategoryList = categoryList;
-            ViewBag.SupplierList = supplierList;
+            ViewBag.CategoryList = GetCategoryList();
+            ViewBag.SupplierList = GetSupplierList();
 
             return View(model);
         }
@@ -131,6 +111,8 @@ namespace Ilk_Mvc_Projesi.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.CategoryList = GetCategoryList();
+                ViewBag.SupplierList = GetSupplierList();
                 return View(model);
             }
             var product = _context.Products.FirstOrDefault(x => x.ProductId == model.ProductId);
@@ -149,11 +131,41 @@ namespace Ilk_Mvc_Projesi.Controllers
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError(string.Empty, $"{model.ProductName} güncellenirken bir hata oluştu. Tekrar deneyiniz)");
+                ViewBag.CategoryList = GetCategoryList();
+                ViewBag.SupplierList = GetSupplierList();
+                ModelState.AddModelError(string.Empty, $"{model.ProductName} güncellenirken bir hata oluştu. Tekrar deneyiniz)");
                     return View(model);
                 }
-            
+
         }
-            
+        private List<SelectListItem> GetCategoryList()
+        {
+            var categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
+            var categoryList = new List<SelectListItem>
+            {
+                new SelectListItem("Kategori Yok", null)
+            };
+            foreach (var category in categories)
+            {
+                categoryList.Add(new SelectListItem(category.CategoryName, category.CategoryId.ToString()));
+            }
+            return categoryList;
+        }
+        private List<SelectListItem> GetSupplierList()
+        {
+            var suppliers = _context.Suppliers.OrderBy(x => x.CompanyName).ToList();
+
+
+
+            var supplierList = new List<SelectListItem>()
+            {
+                new SelectListItem("Tedarikci Yok", null)
+            };
+            foreach (var supplier in suppliers)
+            {
+                supplierList.Add(new SelectListItem(supplier.CompanyName, supplier.SupplierId.ToString()));
+            }
+            return supplierList;
+        }
     }
 }
