@@ -112,7 +112,6 @@ namespace Ilk_Mvc_Projesi.Controllers
 
             return View(model);
         }
-
         [HttpPost]
         public IActionResult Update(CategoryViewModel model)
         {
