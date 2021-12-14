@@ -22,21 +22,31 @@
     </div>
 </div>
 
-<di class="modal-fade" Id="confirm-dalete" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-fade" id="confirm-dalete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                 <hd class="modal-title" in="myModalLabel">Silme Onayı</hd>
             </div>
-            <div class="modal-footer">
-                <p>Ürün Silinmiştir.Bu işlemin geri dönüşü yoktur.</p>
-                <p>Ürün eklediniz.</p>
-                <p class=""></p>
+
+            <div class="modal-body">
+                <p>Ürün Silinecektir. Bu işlemin geri dönüşü yoktur.</p>
+                <p><p>Emin misiniz?</p></p>
             </div>
-            <div class="modal-footer"></div>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
-            <a class="btn btn-danger btn-ok"</a>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+                <a class="btn btn-danger btn-ok"</a>
+            </div>
         </div>
     </div>
 </div>
+@section Scripts
+{
+<script>
+    $('#confirm-delete').on('show.bs.modal', function (e) {
+        $((this).find('.btn.ok').attr('href', '@Url.Action("Delete", "Product", new {id = Model.ProductId})'));
+    });
+</script>
+}
