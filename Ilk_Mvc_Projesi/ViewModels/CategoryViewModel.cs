@@ -12,5 +12,6 @@ namespace Ilk_Mvc_Projesi.ViewModels
         public string CategoryName { get; set; }
         [Display(Name = "Açıklama")]
         public string Description { get; set; }
+        public int ProductCount { get; set; }
     }
 }

@@ -2,7 +2,9 @@
 <div class="text-danger">
     <div asp-validation-summary="All"></div>
 </div>
-<form method="post" asp-action="Create" asp-controller="Category">
+
+
+<form id="frm-add">
     <label asp-for="CategoryName"></label>
     <input asp-for="CategoryName" />
     <span class="text-danger" asp-validation-for="CategoryName"></span>
@@ -12,3 +14,36 @@
     <span class="text-danger" asp-validation-for="Description"></span><br />
     <input type="submit" value="Ekle" class="btn btn-warning" />
 </form>
+
+@section Scripts
+{
+<script>
+    $('function'){
+        $('#frm-add').submit(function (e) {
+
+            e.preventDefault();
+            var model = {
+                categoryName: $('#CategoryName').val(),
+                description: $('#Description').val()
+            };
+            $.ajax({
+                "headers": {
+                    "Content-Type: "application / json"
+                };
+                url: '@Url.Action("AddCategory","CategoryApi")',
+                type: 'POST',
+                data: JSON.stringify(model),
+                dataType: 'Json',
+                success: function (response) {
+                    console.log(response)
+                }
+            });
+
+            error:function (repeat, status, error) {
+                console.log(response)
+            }).fail;
+    });
+    }
+
+</script>
+}
