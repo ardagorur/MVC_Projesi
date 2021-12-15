@@ -21,6 +21,7 @@ namespace Ilk_Mvc_Projesi.Controllers.apis
         {
             _dbcontext = dbcontext;
         }
+        [HttpGet]
         public IActionResult GetCategories()
         {
             try
@@ -28,7 +29,7 @@ namespace Ilk_Mvc_Projesi.Controllers.apis
                 var categories = _dbcontext.Categories
                     .Include(x=>x.Products)
                     .OrderBy(x => x.CategoryName)
-                    .Select(x => new CategoryViewModel
+                    .Select(x => new CategoryViewModel()
                     {
                         CategoryId = x.CategoryId,
                         CategoryName = x.CategoryName,
@@ -87,11 +88,9 @@ namespace Ilk_Mvc_Projesi.Controllers.apis
                 return BadRequest("Kategori Bulunamadı.");
             }
 
-            _dbcontext.Categories.Add(new Category
-            {
-                CategoryName = model.CategoryName,
-                Description = model.Description
-            });
+            category.CategoryName = model.CategoryName;
+            category.Description = model.Description;
+            
             try
             {
                 _dbcontext.Categories.Update(category);

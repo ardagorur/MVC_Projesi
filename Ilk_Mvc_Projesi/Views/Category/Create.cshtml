@@ -18,32 +18,32 @@
 @section Scripts
 {
 <script>
-    $('function'){
-        $('#frm-add').submit(function (e) {
+    $(function() {
+        $("#frm-add").submit(function (e) {
 
             e.preventDefault();
             var model = {
-                categoryName: $('#CategoryName').val(),
-                description: $('#Description').val()
+                "categoryName": $("#CategoryName").val(),
+                "description": $("#Description").val()
             };
+            consol.log(model);
             $.ajax({
                 "headers": {
-                    "Content-Type: "application / json"
-                };
+                    "Content-Type":"application / json"
+                },
                 url: '@Url.Action("AddCategory","CategoryApi")',
-                type: 'POST',
+                type: "POST",
                 data: JSON.stringify(model),
-                dataType: 'Json',
+                dataType: "json",
                 success: function (response) {
-                    console.log(response)
+                    console.log(response);
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText)
                 }
-            });
-
-            error:function (repeat, status, error) {
-                console.log(response)
-            }).fail;
+                }).fail;
     });
-    }
+    })
 
 </script>
 }
