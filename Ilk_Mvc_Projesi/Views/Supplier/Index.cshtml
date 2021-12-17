@@ -3,8 +3,8 @@
 @{ var silinenMesaj = @TempData["silinen_data"]?.ToString(); }
 @if (!string.IsNullOrEmpty(silinenMesaj))
 {
-<h3 class="text-danger">@silinenMesaj isimli müşteri silinmiştir</h3>
-}
+<h3 class="text-danger">@silinenMesaj isimli müşteri silinmiştir</h3>}
+<p>Toplam Kayıt:@Model.Count</p>
 <a asp-action="Create" asp-controller="Supplier" class="btn btn-info">Yeni Firma</a>
 
 <div class="row">
@@ -17,7 +17,7 @@
                     <th>Telefon Numarası</th>
                     <th>Ülke</th>
                     <th>Şehir</th>
-                    <th>Adres</th>
+                    @*<th>Adres</th>*@
                     <th>Detay</th>
                 </tr>
             </thead>
@@ -30,15 +30,39 @@
         <td>@item.Phone</td>
         <td>@item.Country</td>
         <td>@item.City</td>
-        <td>@item.Address</td>
+        @*<td>@item.Address</td>*@
         <td>
             <a class="btn btn-block btn-info"
                asp-controller="Supplier" asp-action="Detail" asp-route-id="@item.SupplierId">
                 Detay
             </a>
         </td>
-    </tr>}
+    </tr>
+}
             </tbody>
         </table>
+        <input type="button" value="Önceki Sayfa" class="btn btn-success page" id="btn-onceki" />
+        @ViewBag.Page/@ViewBag.Limit
+        <input type="button" value="Sonraki Sayfa" class="btn btn-success page" id="btn-sonraki" />
     </div>
 </div>
+@section Scripts{
+    <script>
+        var limit = @ViewBag.Limit;
+        var page = @ViewBag.Page;
+        $("#btn-onceki").click(function () {
+            if (page > 1) {
+                page -= 1;
+                var url = "product/Index/?page=" + page;
+                var url2 = "@Url.Action("Index","Supplier", new {page =ViewBag.Page-1 })";
+                window.location.href = url2;
+            }
+    });
+        $("#btn-sonraki").click(function () {
+            if (page < limit) {
+                var url3 = "@Url.Action("Index","Supplier", new {page =ViewBag.Page+1 })";
+                window.location.href = url3;
+            }
+    });
+    </script>
+}

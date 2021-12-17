@@ -24,6 +24,7 @@ namespace Ilk_Mvc_Projesi.Controllers
                 .Include(x => x.Orders)
                 .OrderBy(x => x.CompanyName)
                 .ToList();
+
             return View(data);
         }
 

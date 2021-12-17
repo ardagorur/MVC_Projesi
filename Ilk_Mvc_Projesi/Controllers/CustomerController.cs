@@ -18,9 +18,18 @@ namespace Ilk_Mvc_Projesi.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        private int _pagesize = 10;
+        public IActionResult Index(int? page=1)
         {
-            var model = _context.Customers.ToList();
+            var model = _context.Customers
+                .OrderBy(c => c.CompanyName)
+                .Skip((page.GetValueOrDefault() - 1) * _pagesize)
+                .Take(_pagesize)
+                .ToList();
+
+
+            ViewBag.Page = page.GetValueOrDefault(1);
+            ViewBag.Limit = (int)Math.Ceiling(_context.Customers.Count() / (double)_pagesize);
             return View(model);
         }
         public IActionResult Detail(string? id)

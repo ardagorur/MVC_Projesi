@@ -3,6 +3,7 @@
 @if (!string.IsNullOrEmpty(silinenMesaj))
 {
 <h3 class="text-danger">@silinenMesaj isimli firma silinmiştir</h3>}
+<p>Toplam Kayıt:@Model.Count</p>
 <a asp-action="Create" asp-controller="Shipper" class="btn btn-info">Yeni Firma</a>
 
 <div class="row">
@@ -26,8 +27,7 @@
                 Detay
             </a>
         </td>
-    </tr>
-}
+    </tr>}
             </tbody>
         </table>
     </div>

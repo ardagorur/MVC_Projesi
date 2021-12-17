@@ -17,33 +17,31 @@
 
 @section Scripts
 {
-<script>
-    $(function() {
-        $("#frm-add").submit(function (e) {
-
-            e.preventDefault();
-            var model = {
-                "categoryName": $("#CategoryName").val(),
-                "description": $("#Description").val()
-            };
-            consol.log(model);
-            $.ajax({
-                "headers": {
-                    "Content-Type":"application / json"
-                },
-                url: '@Url.Action("AddCategory","CategoryApi")',
-                type: "POST",
-                data: JSON.stringify(model),
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                },
-                error: function (request, status, error) {
-                    console.log(request.responseText)
-                }
+    <script>
+        $(function() {
+            $("#frm-add").submit(function(e) {
+                e.preventDefault();
+                var model = {
+                    "categoryName": $("#CategoryName").val(),
+                    "description": $("#Description").val()
+                };
+                console.log(model);
+                $.ajax({
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    url: '@Url.Action("AddCategory","CategoryApi")',
+                    type: "POST",
+                    data: JSON.stringify(model),
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function (request, status, error) {
+                        console.log(request.responseText);
+                    }
                 }).fail;
-    });
-    })
-
-</script>
+            });
+        })
+    </script>
 }
