@@ -51,9 +51,9 @@ namespace Ilk_Mvc_Projesi.Controllers
             var model = new ProductViewModel()
             {
                 ProductId = data.ProductId,
-                CategoryName = data.Category.CategoryName,
+                CategoryName = data.Category?.CategoryName,
                 CategoryId = data.CategoryId,
-                CompanyName = data.Supplier.CompanyName,
+                CompanyName = data.Supplier?.CompanyName,
                 ProductName = data.ProductName,
                 UnitPrice = data.UnitPrice,
                 SupplierId = data.SupplierId

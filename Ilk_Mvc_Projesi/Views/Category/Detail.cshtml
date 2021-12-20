@@ -1,11 +1,27 @@
 ﻿@model Category
-
+    <input type="hidden" asp-for=" CategoryId"  />
 <h1>@Model.CategoryName</h1>
 <h3>@Model.Description</h3>
 <a asp-action="Delete" asp-controller="Category" asp-route-categoryId=@Model.CategoryId class="btn btn-danger">Kategoriyi Sil</a>
 <a asp-action="Update" asp-controller="Category" asp-route-Id=@Model.CategoryId class="btn btn-dark">Kategoriyi Güncelle</a>
-
-
+<label>Ürün Ekle</label><input type="checkbox" id="cb-urunekle" class="form-check-inline" />
+<br />
+<form id="frm-add" style="display:none">
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Ürün Adı" id="in-urunadi"/>
+        </div>
+            <div class="col">
+                <input type="number" min="0" max="99999" class="form-control" placeholder="Fiyatı" id="in-fiyat"/>
+            </div>
+        <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="submit" class="btn btn-success form-control" id="btn-urunekle" value="Ürün ekle" />
+                </div>
+            </div>
+    </div>
+</form>
 <div class="row">
     <div class="col-9">
         <table class="table-bordered">
@@ -15,11 +31,11 @@
                     <th>Fiyat</th>
                     <th>Kategori Adı</th>
                     <th>Siparişleri</th>
-                    @*<th>Hacim</th>*@
+                    <th>Hacim</th>
                     <th>Detay</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tbl-body">
                 @foreach (var item in Model.Products)
                 {
     <tr>
@@ -27,7 +43,7 @@
         <td>@item.UnitPrice</td>
         <td>@item.Category.CategoryName</td>
         <td>@item.OrderDetails.Count</td>
-        @*<td>@item.OrderDetails.Sum(x=>x.UnitPrice*x.Quantity*(decimal)(1-x.Discount))</td>*@
+        <td>@item.OrderDetails.Sum(x=>x.UnitPrice*x.Quantity*(decimal)(1-x.Discount))</td>
         <td>
             <a class="btn btn-block btn-info"
                asp-controller="Category" asp-action="Detail" asp-route-id="@item.CategoryId">
@@ -39,3 +55,61 @@
         </table>
     </div>
 </div>
+
+@section Scripts
+{ 
+    <script>
+        $("#cb-urunekle").click(function () {
+            $("#frm-add").toggle(500);
+        });
+        $("#frm-add").submit(function (e) {
+            e.preventDefault();
+
+        var model = {
+            productName: $("#in-urunadi").val(),
+            unitPrice: $("#in-fiyat").val(),
+            categoryId: $("#CategoryId").val()
+        };
+
+        $.ajax({
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            url: '@Url.Action("Add","ProductApi")',
+            type: "POST",
+            data: JSON.stringify(model),
+            dataType: "json",
+            success: function (response) {
+                console.log(response)
+                var model = response.model;
+
+                var tr = document.createElement("tr");
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");
+                var td3 = document.createElement("td");
+                var td4 = document.createElement("td");
+                var td5 = document.createElement("td");
+                var td6 = document.createElement("td");
+/*                var alink = document.createElement("a");*/
+
+                $(td1).html(model.productName);
+                $(td2).html(model.unitPrice);
+                $(td3).html("@Model.CategoryName");
+                $(td4).html("0");
+                $(td5).html("0");
+                var dataUrl = '@Url.Action("Detail","Product")';
+                var alink = $("<a></a>")
+                    .attr("href", `${dataUrl}/${model.productId}`)
+                    .addClass("btn btn-info btn-block")
+                    .html("Detay").appendTo(td6);
+/*                $(td6).append(alink);*/
+                $(tr).append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).appendTo("#tbl-body");
+
+                    },
+                    error: function (request, status, error) {
+                        console.log(request.responseText);
+                    }
+            })
+        });
+    </script>
+}
