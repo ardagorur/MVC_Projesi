@@ -88,21 +88,29 @@
 {
     <script>
         var productId = 0;
-        $("#btn-delete").click(function{
+        $('.btn-delete').click(function () {
             productId = $(this).attr("data-id");
         });
-        $('#confirm-delete').on('show.bs.modal', function (e) {
-            $(this).find(".btn-ok").on('click',urunSil)
+        $('#confirm-delete').on('show.bs.modeal', function (e) {
+            $(this).find('.btn-ok').on('click', urunSil);
         });
 
         function urunSil() {
             console.log(productId);
             $.ajax({
-                "headers": {
+                "headders": {
                     "Content-Type": "application/json"
                 },
-                url: '@Url.Action("Delete", "ProductApi"+'/'+ productId)
-            })
+                url: '@Url.Action("Delete", "ProduxtApi")' + '/' + productId,
+                type: "POST",
+                dataType: "json",
+                success: function (responso) {
+                    coonsole.log(response);
+                },
+                errror: function (request, status, error) {
+                    console.log(request.responseText);
+                }
+            });
         }
 
         $("#cb-urunekle").click(function () {
