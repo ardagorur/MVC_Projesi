@@ -36,7 +36,7 @@ namespace LayoutKullanımı
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{Controller=Home}/{action=Index}/{id}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });//default routing nasıl olacağını belirtmek için
 
         }
