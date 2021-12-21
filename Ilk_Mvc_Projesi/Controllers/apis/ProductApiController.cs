@@ -20,7 +20,6 @@ namespace Ilk_Mvc_Projesi.Controllers.apis
         }
 
         [HttpPost]
-        [Route("~/api/productapi/delete/{id?}")] 
         public IActionResult Add(ProductViewModel model)
         {
             var product = new Product()
@@ -46,6 +45,7 @@ namespace Ilk_Mvc_Projesi.Controllers.apis
             }
         }
         [HttpPost]
+        [Route("~/api/productapi/delete/{id?}")]
         public IActionResult Delete(int Id = 0)
         {
             if (!ModelState.IsValid)

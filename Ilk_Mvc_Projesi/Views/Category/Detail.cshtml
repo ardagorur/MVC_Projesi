@@ -15,12 +15,13 @@
         <div class="col">
             <input type="number" min="0" max="99999" class="form-control" placeholder="Fiyatı" id="in-fiyat" />
         </div>
+    </div>
         <div class="row">
             <div class="col-md-4">
                 <input type="submit" class="btn btn-success form-control" id="btn-urunekle" value="Ürün ekle" />
             </div>
         </div>
-    </div>
+
 </form>
 <div class="row">
     <div class="col-9">
@@ -88,31 +89,29 @@
 {
     <script>
         var productId = 0;
-        $('.btn-delete').click(function () {
+        $('.btn-delete').click(function() {
             productId = $(this).attr("data-id");
         });
-        $('#confirm-delete').on('show.bs.modeal', function (e) {
+        $('#confirm-delete').on('show.bs.modal', function(e) {
             $(this).find('.btn-ok').on('click', urunSil);
         });
-
         function urunSil() {
             console.log(productId);
             $.ajax({
-                "headders": {
+                "headers": {
                     "Content-Type": "application/json"
                 },
-                url: '@Url.Action("Delete", "ProduxtApi")' + '/' + productId,
+                url: '@Url.Action("Delete", "ProductApi")'+'/'+productId,
                 type: "POST",
                 dataType: "json",
-                success: function (responso) {
-                    coonsole.log(response);
+                success: function(response) {
+                    console.log(response);
                 },
-                errror: function (request, status, error) {
+                error: function(request, status, error) {
                     console.log(request.responseText);
                 }
             });
         }
-
         $("#cb-urunekle").click(function () {
             $("#frm-add").toggle(500);
         });
