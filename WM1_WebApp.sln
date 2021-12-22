@@ -9,6 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LayoutKullanımı", "Layout
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItServiceApp", "ItServiceApp\ItServiceApp.csproj", "{8ECAA2EF-9082-4CAB-97C5-776199485BB6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1", "1", "{65EA5ABF-D7CA-4C00-9254-D49EFA9D39FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2", "2", "{B39032F9-A467-4315-9C5E-FDFA508D9A8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3", "3", "{84901640-D2B8-4CE4-935E-9C82309D9D44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +36,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2E1DDDA-0D38-42EA-A1DF-E9A724DD9CFA} = {65EA5ABF-D7CA-4C00-9254-D49EFA9D39FF}
+		{14CF34F2-4C30-47D8-8BAF-B3673AFB884D} = {B39032F9-A467-4315-9C5E-FDFA508D9A8C}
+		{8ECAA2EF-9082-4CAB-97C5-776199485BB6} = {84901640-D2B8-4CE4-935E-9C82309D9D44}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07768F9C-0114-4308-8BBF-02646F67585B}
