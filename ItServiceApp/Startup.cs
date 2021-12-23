@@ -47,7 +47,8 @@ namespace ItServiceApp
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
 
-            });
+            }).AddEntityFrameworkStores<MyContext>();
+
             services.ConfigureApplicationCookie(options => 
             {
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
