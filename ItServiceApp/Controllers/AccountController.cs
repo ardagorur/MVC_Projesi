@@ -80,9 +80,8 @@ namespace ItServiceApp.Controllers
             {
                 return View(model);
             }
-
-
             var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe,true);
+
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
