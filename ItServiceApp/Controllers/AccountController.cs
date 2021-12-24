@@ -84,11 +84,12 @@ namespace ItServiceApp.Controllers
                 var count = _userManager.Users.Count();
                 result = await _userManager.AddToRoleAsync(user, count == 1 ? RoleModels.Admin : RoleModels.User);
 
-                //await _emailSender.SendAsync(new EmailMessage {
-                //Contacts = new string[] {"ardagrr19@gmail.com"},
-                //Subject = $"{user.UserName} Kayıt Onayı",
-                //Body = $"{user.Name} {user.Surname} isimli kullanıcı {DateTime.Now:G} itibariyle kayıt oldu." 
-                //});
+                await _emailSender.SendAsync(new EmailMessage
+                {
+                    Contacts = new string[] { "ardagrr19@gmail.com" },
+                    Subject = $"{user.UserName} Kayıt Onayı",
+                    Body = $"{user.Name} {user.Surname} isimli kullanıcı {DateTime.Now:G} itibariyle kayıt oldu."
+                });
 
                 //email onay maili
 
