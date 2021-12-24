@@ -1,4 +1,6 @@
-﻿using ItServiceApp.Models.Identity;
+﻿using ItServiceApp.Models;
+using ItServiceApp.Models.Identity;
+using ItServiceApp.Services;
 using ItServiceApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,11 +17,32 @@ namespace ItServiceApp.Controllers
 
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly IEmailSender _emailSender;
 
-        public AccountController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager)
+        public object RoleName { get; private set; }
+
+        public  AccountController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager,RoleManager<ApplicationRole> roleManager,IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
+            _emailSender = emailSender;
+            ChecckRoles();
+        }
+
+        private void ChecckRoles()
+        {
+            foreach (var roleName in RoleModels.Roles)
+            {
+                if (!_roleManager.RoleExistsAsync(roleName).Result)
+                {
+                    var result = _roleManager.CreateAsync(new ApplicationRole()
+                    {
+                        Name = roleName
+                    }).Result;
+                }
+            }
         }
 
         [HttpGet]
@@ -55,12 +78,21 @@ namespace ItServiceApp.Controllers
                 UserName = model.UserName
             };
             var result = await _userManager.CreateAsync(user, model.Password);
+
             if (result.Succeeded)
             {
-                //kullanıcıya rol atama
+                var count = _userManager.Users.Count();
+                result = await _userManager.AddToRoleAsync(user, count == 1 ? RoleModels.Admin : RoleModels.User);
+
+                //await _emailSender.SendAsync(new EmailMessage {
+                //Contacts = new string[] {"ardagrr19@gmail.com"},
+                //Subject = $"{user.UserName} Kayıt Onayı",
+                //Body = $"{user.Name} {user.Surname} isimli kullanıcı {DateTime.Now:G} itibariyle kayıt oldu." 
+                //});
+
                 //email onay maili
-                //login sayfasına yönlendirme
-                return RedirectToAction("Index", "Home");
+
+                return RedirectToAction("Login", "Account");
             }
             else
             {
@@ -80,15 +112,26 @@ namespace ItServiceApp.Controllers
             {
                 return View(model);
             }
-            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe,true);
+
+            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, true);
 
             if (result.Succeeded)
             {
+                var user = await _userManager.FindByNameAsync(model.UserName);
+
+                await _emailSender.SendAsync(new EmailMessage()
+                {
+                    Contacts = new string[] { "ardagrr19@gmail.com" },
+                    Subject = $"{user.UserName} - Kullanıcı Giriş Yaptı",
+                    Body =
+                        $"{user.Name} {user.Surname} isimli kullanıcı {DateTime.Now:g} itibari ile siteye giriş yapmıştır"
+                });
+
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Kullanucı Adı veya Şifre Hatalı");
+                ModelState.AddModelError(String.Empty, "Kullanıcı adı veya şifre hatalı");
                 return View(model);
             }
         }

@@ -107,7 +107,10 @@
                         {
                             <a asp-controller="Account" asp-action="Login">Giriş yap<i class="fal fa-long-arrow-alt-right"></i></a>
                         }
-                        <a href="#">Free Consulting <i class="fal fa-long-arrow-right"></i></a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="Admin" asp-action="Index">Admin Panel<i class="fal fa-long-arrow-alt-right"></i></a>
+                        }
                     </div>
                 </div>
             </div>
