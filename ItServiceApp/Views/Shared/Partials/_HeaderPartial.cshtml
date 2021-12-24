@@ -1,4 +1,6 @@
-﻿<header class="header-one sticky-header">
+﻿@inject SignInManager<ApplicationUser> signInManager
+
+<header class="header-one sticky-header">
     <div class="header-navigation">
         <div class="container-fluid d-flex align-items-center justify-content-between container-1470">
             <div class="header-left">
@@ -97,6 +99,14 @@
                         <span></span><span></span><span></span>
                     </div>
                     <div class="navbar-btn">
+                        @if (signInManager.IsSignedIn(Context.User))
+                        {
+                            <a asp-controller="Account" asp-action="Logout">Çıkış yap<i class="fal fa-long-arrow-alt-right"></i></a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login">Giriş yap<i class="fal fa-long-arrow-alt-right"></i></a>
+                        }
                         <a href="#">Free Consulting <i class="fal fa-long-arrow-right"></i></a>
                     </div>
                 </div>

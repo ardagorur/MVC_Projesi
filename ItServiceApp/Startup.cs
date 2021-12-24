@@ -70,9 +70,12 @@ namespace ItServiceApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseAuthentication();
+
             app.UseRouting();
-            app.UseAuthorization();
+
+            app.UseAuthentication();//Giriþ Çýkýþ sistemini kullanýr.
+            app.UseAuthorization();//Authorize attribute kullanabilmek için
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
