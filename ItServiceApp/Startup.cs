@@ -4,6 +4,7 @@ using ItServiceApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,8 +48,9 @@ namespace ItServiceApp
                 options.User.AllowedUserNameCharacters =
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
+                //options.SignIn.RequireConfirmedEmail = true;
 
-            }).AddEntityFrameworkStores<MyContext>();
+            }).AddEntityFrameworkStores<MyContext>().AddDefaultTokenProviders();
 
             services.ConfigureApplicationCookie(options => 
             {
