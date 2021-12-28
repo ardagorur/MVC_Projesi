@@ -18,7 +18,6 @@ namespace ItServiceApp.Controllers
 {
     public class AccountController : Controller
     {
-
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -34,7 +33,6 @@ namespace ItServiceApp.Controllers
             _emailSender = emailSender;
             ChecckRoles();
         }
-
         private void ChecckRoles()
         {
             foreach (var roleName in RoleModels.Roles)
@@ -48,7 +46,6 @@ namespace ItServiceApp.Controllers
                 }
             }
         }
-
         [HttpGet]
         public IActionResult Register()
         {
@@ -158,7 +155,7 @@ namespace ItServiceApp.Controllers
 
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByNameAsync(model.UserName);
+                //var user = await _userManager.FindByNameAsync(model.UserName);
 
                 //await _emailSender.SendAsync(new EmailMessage()
                 //{
@@ -241,7 +238,6 @@ namespace ItServiceApp.Controllers
         {
             return View();
         }
-
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> UpdatePassword(PasswordUpdateViewModel model)
