@@ -62,7 +62,8 @@ namespace ItServiceApp
                 options.SlidingExpiration = true;
             });
 
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IEmailSender, EmailSender>(); //Loose coupling
+            services.AddScoped<IPaymentService, IyzicoPaymentService>(); //loose coupling
             services.AddAutoMapper(options =>
             {
                 //options.AddProfile<PaymentProfile>(); iki çeþitte tanýmlanabilir.
