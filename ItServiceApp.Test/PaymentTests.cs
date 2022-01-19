@@ -23,6 +23,7 @@ namespace ItServiceApp.Test
             foreach (var bin in binNumbers)
             {
                 var result = _paymentService.CheckInstalment(bin, 1000);
+
             }
             Assert.Equal(true, true);
         }

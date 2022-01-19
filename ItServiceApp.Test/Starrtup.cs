@@ -1,4 +1,5 @@
-﻿using ItServiceApp.Services;
+﻿using ItServiceApp.MapperProfiles;
+using ItServiceApp.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace ItServiceApp.Test
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPaymentService, IyzicoPaymentService>();
+            services.AddAutoMapper(options =>
+            {
+                options.AddProfile(typeof(PaymentProfile));
+            });
         }
     }
 }
