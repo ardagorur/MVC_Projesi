@@ -2,6 +2,7 @@
 using ItServiceApp.Models.Payment;
 using ItServiceApp.Services;
 using ItServiceApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace ItServiceApp.Controllers
 {
+    [Authorize]
     public class PaymentController : Controller
     {
         private readonly IPaymentService _paymentService;
