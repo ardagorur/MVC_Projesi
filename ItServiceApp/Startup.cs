@@ -41,7 +41,7 @@ namespace ItServiceApp
                 options.Password.RequiredLength = 5;
 
                 //Lockout Settings
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
                 options.Lockout.MaxFailedAccessAttempts = 3;
                 options.Lockout.AllowedForNewUsers = false;
 

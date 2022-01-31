@@ -1,0 +1,27 @@
+{
+  "name": "itserviceapp",
+  "version": "1.0.0",
+  "description": "it service uygulaması",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ardagorur/MVC_Projesi.git"
+  },
+  "author": "Arda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ardagorur/MVC_Projesi/issues"
+  },
+  "homepage": "https://github.com/ardagorur/MVC_Projesi#readme",
+  "dependencies": {
+    "devextreme": "^21.2.5",
+    "devextreme-aspnet-data": "^2.8.6",
+    "exceljs": "^4.3.0",
+    "file-saver": "^2.0.5",
+    "jquery": "^3.6.0",
+    "jszip": "^3.7.1"
+  }
+}
