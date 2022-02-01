@@ -25,6 +25,7 @@ namespace ItServiceApp.Areas.Admin.Controllers
             _dbContext = dbContext;
         }
 
+        #region crud
         [HttpGet]
         public IActionResult Get(DataSourceLoadOptions options)
         {
@@ -96,9 +97,6 @@ namespace ItServiceApp.Areas.Admin.Controllers
                 return BadRequest("Silme işlemi başarısız.");
             return Ok(new JsonResponseViewModel());
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        #endregion
     }
 }

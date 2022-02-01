@@ -1,24 +1,25 @@
 ﻿@{
-    ViewBag.Title = "Üyelik İşlemleri";
+    ViewBag.Title = "Üyeli Tipleri";
 }
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <div class="card-title">Üyelik Tipleri</div>
+                            <h4 class="card-title">Üyelik Tipleri</h4>
                         </div><!--end col-->
-                    </div><!--end row-->
+                    </div>  <!--end row-->
                 </div><!--end card-header-->
                 <div class="card-body">
                     <div id="dxGrid"></div>
                 </div><!--end card-body-->
             </div><!--end card-->
-        </div><!--end col-->
+        </div> <!--end col-->
     </div><!--end row-->
 </div>
+
 
 @section Scripts
 {
@@ -26,15 +27,15 @@
     <script>
         var dataGrid = null;
         $(() => {
-            var url = '../../../api/userapi';
+            var url = '../../../api/subscriptiontypeapi';
             dataGrid = $("#dxGrid").dxDataGrid({
                 remoteOperations: { paging: true, filtering: true, sorting: true, grouping: true, summary: true, groupPaging: true },
                 dataSource: DevExpress.data.AspNet.createStore({
                     key: 'id',
                     loadUrl: `${url}/get`,
                     updateUrl: `${url}/update`,
-                    //insertUrl: `${url}/insert`,
-                    //deleteUrl: `${url}/delete`,
+                    insertUrl: `${url}/insert`,
+                    deleteUrl: `${url}/delete`,
                     onBeforeSend(method, ajaxOptions) {
                         ajaxOptions.xhrFields = { withCredentials: true };
                         console.log(method);
@@ -43,7 +44,9 @@
                 }),
                 editing: {
                     mode: 'form',
-                    allowUpdating: true
+                    allowUpdating: true,
+                    allowAdding: true,
+                    allowDeleting: true
                 },
                 allowColumnResizing: true,
                 showColumnLines: true,
@@ -64,7 +67,7 @@
                 },
                 export: {
                     enabled: true,
-                    fileName: `Tüm Kullanıcılar_${parseInt(Math.random() * 1000000000)}`,
+                    fileName: `Tüm Üyelikler_${parseInt(Math.random() * 1000000000)}`,
                     allowExportSelectedData: true
                 },
                 paging: {
@@ -88,30 +91,28 @@
                     },
                     {
                         caption: 'Ad',
-                        dataField:"name"
+                        dataField: "name"
                     },
                     {
-                        caption:'Soyad',
-                        dataField:"surname"
+                        caption: 'Açıklama',
+                        dataField: "description"
                     },
                     {
-                        caption: 'Kullanıcı Adı',
-                        dataField: "userName"
+                        caption: 'Ay',
+                        dataField: "month",
+                        dataType: "number"
                     },
                     {
-                        caption: 'Email',
-                        dataField: "email"
-                    },
-                    {
-                        caption: 'Email Onayı',
-                        dataField: "emailConfirmed",
-                        dataType:"boolean"
+                        caption: 'Fiyat',
+                        dataField: "price",
+                        dataType: "number",
+                        format: "#.## TL"
                     },
                     {
                         dataField: "createdDate",
                         caption: "Kayıt Tarihi",
-                        dataType: "date",
-                        format: 'dd/MM/yyyy',
+                        dataType: "datetime",
+                        format: 'dd/MM/yyyy HH:mm',
                         sortOrder: "desc"
                     }
                 ]
