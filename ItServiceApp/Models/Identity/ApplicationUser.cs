@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ItServiceApp.Models.Entites;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,5 +17,8 @@ namespace ItServiceApp.Models.Identity
         [PersonalData]
         public string Surname { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        public virtual List<Address> Addresses { get; set; }
+        public virtual List<Subscription> GetSubscriptions { get; set; }
     }
 }

@@ -8,21 +8,24 @@ using System.Threading.Tasks;
 
 namespace ItServiceApp.Models.Entites
 {
-    public class Subscription:BaseEntity
+    public class Address:BaseEntity
     {
-
-        public Guid SubscriptionTypeId { get; set; }
-        public decimal Amount { get; set; }
-        public decimal PaidAmount { get; set; }
-        public DateTime EndDate { get; set; }
+        public string Line { get; set; }
+        public string PostCode { get; set; }
+        public AddressTypes AddressType { get; set; }
+        public int StateId { get; set; }
         [StringLength(450)]
         public string UserId { get; set; }
-        [NotMapped]
-        public bool IsActive => EndDate > DateTime.Now;
 
-        [ForeignKey(nameof(SubscriptionTypeId))]
-        public virtual SubscriptionType SubscriptionType { get; set; }
+        [ForeignKey(nameof(StateId))]
+        public virtual State State { get; set; }
         [ForeignKey(nameof(UserId))]
         public virtual ApplicationUser User { get; set; }
+    }
+
+    public enum AddressTypes
+    {
+        Fatura,
+        Teslimat
     }
 }
