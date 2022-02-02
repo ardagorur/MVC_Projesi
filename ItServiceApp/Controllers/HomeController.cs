@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ItServiceApp.Data;
+using ItServiceApp.Models.Entites;
+using ItServiceApp.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +11,8 @@ namespace ItServiceApp.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private MyContext _dbContext;
+        public IActionResult Index(SubscriptionTypeViewModel model)
         {
             return View();
         }
