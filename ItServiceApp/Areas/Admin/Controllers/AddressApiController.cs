@@ -38,6 +38,7 @@ namespace ItServiceApp.Areas.Admin.Controllers
 
             return Ok(DataSourceLoader.Load(data, loadOptions));
         }
+        [HttpPost]
         public IActionResult Insert(string values)
         {
             var data = new Address();
@@ -62,6 +63,7 @@ namespace ItServiceApp.Areas.Admin.Controllers
                 });
             return Ok(new JsonResponseViewModel());
         }
+        [HttpPut]
         public IActionResult Update(Guid key, string values)
         {
             var data = _dbContext.Addresses.Find(key);
@@ -83,6 +85,7 @@ namespace ItServiceApp.Areas.Admin.Controllers
                 });
             return Ok(new JsonResponseViewModel());
         }
+        [HttpDelete]
         public IActionResult Delete(Guid key)
         {
             var data = _dbContext.Addresses.Find(key);
