@@ -23,6 +23,7 @@ namespace ItServiceApp.MapperProfiles
             CreateMap<PaymentResponseModel, Payment>().ReverseMap();
             CreateMap<AddressModel, ItServiceApp.Models.Entites.Address>().ReverseMap();
             CreateMap<SubscriptionTypeViewModel, SubscriptionType>().ReverseMap();
+
         }
     }
 }
