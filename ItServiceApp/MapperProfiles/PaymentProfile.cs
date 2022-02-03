@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ItServiceApp.Models.Entites;
 using ItServiceApp.Models.Payment;
 using ItServiceApp.ViewModels;
 using Iyzipay.Model;
@@ -21,9 +20,7 @@ namespace ItServiceApp.MapperProfiles
             CreateMap<BasketModel, BasketItem>().ReverseMap();
             CreateMap<CustomerModel, Buyer>().ReverseMap();
             CreateMap<PaymentResponseModel, Payment>().ReverseMap();
-            CreateMap<AddressModel, ItServiceApp.Models.Entites.Address>().ReverseMap();
-            CreateMap<SubscriptionTypeViewModel, SubscriptionType>().ReverseMap();
-
+            CreateMap<AddressModel, Address>().ReverseMap();
         }
     }
 }

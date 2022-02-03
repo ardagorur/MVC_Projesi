@@ -19,7 +19,7 @@ namespace ItServiceApp.Controllers
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public IActionResult Index(SubscriptionTypeViewModel model)
+        public IActionResult Index()
         {
 
             //var data = _dbContext.Set<SubscriptionType>().Select(x=> new SubscriptionTypeViewModel
@@ -30,8 +30,7 @@ namespace ItServiceApp.Controllers
             //    Month = x.Month,
             //    Price = x.Price
             //}).ToList();
-            var data = _dbContext.Set<SubscriptionType>().ToList().Select(x => _mapper.Map<SubscriptionTypeViewModel>(x)).OrderBy(x=>x.Price).ToList();
-            return View(data);
+            return View();
         }
     }
 }

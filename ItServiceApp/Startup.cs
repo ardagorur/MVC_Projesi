@@ -71,6 +71,7 @@ namespace ItServiceApp
             {
                 //options.AddProfile<PaymentProfile>(); iki çeþitte tanýmlanabilir.
                 options.AddProfile(typeof(PaymentProfile));
+                options.AddProfile(typeof(SubscriptionTypeProfile));
             });
 
             services.AddControllersWithViews()
