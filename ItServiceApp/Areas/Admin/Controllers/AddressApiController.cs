@@ -1,8 +1,8 @@
 ﻿using DevExtreme.AspNet.Data;
+using ItServiceApp.Core.Entites;
+using ItServiceApp.Core.ViewModels;
 using ItServiceApp.Data;
 using ItServiceApp.Extensions;
-using ItServiceApp.Models.Entites;
-using ItServiceApp.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

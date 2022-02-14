@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
+using ItServiceApp.Core.Entites;
+using ItServiceApp.Core.ViewModels;
 using ItServiceApp.Data;
-using ItServiceApp.Models.Entites;
-using ItServiceApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ItServiceApp.Components
 {

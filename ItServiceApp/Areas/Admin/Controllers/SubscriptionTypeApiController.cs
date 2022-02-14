@@ -1,18 +1,15 @@
 ﻿using DevExtreme.AspNet.Data;
+using ItServiceApp.Core.Entites;
+using ItServiceApp.Core.ViewModels;
 using ItServiceApp.Data;
 using ItServiceApp.Extensions;
-using ItServiceApp.Models.Entites;
-using ItServiceApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace ItServiceApp.Areas.Admin.Controllers
 {

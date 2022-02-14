@@ -1,7 +1,8 @@
+using ItServiceApp.Bussines.MapperProfiles;
+using ItServiceApp.Bussines.Services.Email;
+using ItServiceApp.Bussines.Services.Payment;
+using ItServiceApp.Core.Identity;
 using ItServiceApp.Data;
-using ItServiceApp.MapperProfiles;
-using ItServiceApp.Models.Identity;
-using ItServiceApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +14,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ItServiceApp
 {
